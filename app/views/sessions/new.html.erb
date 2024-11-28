@@ -1,0 +1,41 @@
+<%= tag.div(flash[:alert], class: "alert alert-danger") if flash[:alert] %>
+<%= tag.div(flash[:notice], class: "alert alert-success") if flash[:notice] %>
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+          <h3 class="mb-0 text-center">Login Page</h3>
+        </div>
+        <div class="card-body">
+          <%= form_with url: session_path, class: "needs-validation" do |form| %>
+            <div class="mb-3">
+              <%= form.email_field :email_address, 
+                class: "form-control", 
+                required: true, 
+                autofocus: true, 
+                autocomplete: "username", 
+                placeholder: "Enter your email address", 
+                value: params[:email_address] %>
+            </div>
+            <div class="mb-3">
+              <%= form.password_field :password, 
+                class: "form-control", 
+                required: true, 
+                autocomplete: "current-password", 
+                placeholder: "Enter your password", 
+                maxlength: 72 %>
+            </div>
+            <div class="d-grid">
+              <%= form.submit "Sign in", class: "btn btn-primary btn-block" %>
+            </div>
+          <% end %>
+        </div>
+        <div class="card-footer text-center">
+          <%= link_to "Forgot password?", new_password_path, class: "text-primary" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
