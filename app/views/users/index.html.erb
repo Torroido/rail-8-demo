@@ -21,9 +21,11 @@
                 <td><%= user.name %></td>
                 <td><%= user.email_address %></td>
                 <td><%= user.created_at.strftime('%Y-%m-%d') %></td>
-                <td>
-                  <a href="<%= edit_user_path(user) %>" class="btn btn-sm btn-primary">Edit</a>
-                </td>
+                <% if Current.session.user.id == user.id %>
+                  <td>
+                    <a href="<%= edit_user_path(user) %>" class="btn btn-sm btn-primary">Edit</a>
+                  </td>                  
+                <% end %>
               </tr>
             <% end %>
           </tbody>
