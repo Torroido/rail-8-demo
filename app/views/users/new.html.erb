@@ -19,6 +19,11 @@
               <%= f.email_field :email_address, class: "form-control", placeholder: "Enter user email", required: true %>
             </div>
             
+            <div class="mb-3">
+              <%= f.label :password, class: "form-label" %>
+              <%= f.password_field :password, class: "form-control", placeholder: "Password", required: true %>
+            </div>
+
             <!-- Submit Button -->
             <div class="text-end">
               <%= f.submit "Create User", class: "btn btn-primary" %>
