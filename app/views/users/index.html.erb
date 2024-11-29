@@ -12,6 +12,7 @@
               <th>Email</th>
               <th>Created At</th>
               <th>Actions</th>
+              <th>Chat</th>
             </tr>
           </thead>
           <tbody>
@@ -24,6 +25,11 @@
                 <% if Current.session.user.id == user.id %>
                   <td>
                     <a href="<%= edit_user_path(user) %>" class="btn btn-sm btn-primary">Edit</a>
+                  </td>                  
+                <% end %>
+                 <% if !(Current.session.user.id == user.id) %>
+                  <td>
+                    <%= button_to "Start Conversation", conversations_path(receiver_id: user.id), class: "btn btn-success" %>
                   </td>                  
                 <% end %>
               </tr>
