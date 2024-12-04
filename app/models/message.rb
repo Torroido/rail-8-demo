@@ -9,7 +9,7 @@ class Message < ApplicationRecord
   private
 
   def broadcast_to_participants
-    [conversation.sender, conversation.receiver].each do |participant|
+    [ conversation.sender, conversation.receiver ].each do |participant|
       broadcast_append_to(
         "user_#{participant.id}_conversation_#{conversation.id}_messages",
         partial: "messages/message",

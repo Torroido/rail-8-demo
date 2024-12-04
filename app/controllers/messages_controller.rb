@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
 
   def create
     @message = @conversation.messages.create(
-      user: @current_user, 
+      user: @current_user,
       content: params[:content]
     )
     redirect_to conversation_messages_path(@conversation)
