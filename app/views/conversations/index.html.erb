@@ -1,0 +1,7 @@
+<% @conversations.each do |conversation| %>
+  <div>
+    Chat with: <%= conversation.receiver == @current_user ? conversation.sender.name : conversation.receiver.name %>
+    <%= link_to "Open Chat", conversation_messages_path(conversation) %>
+  </div>
+<% end %>
+

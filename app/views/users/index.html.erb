@@ -26,6 +26,11 @@
                     <a href="<%= edit_user_path(user) %>" class="btn btn-sm btn-primary">Edit</a>
                   </td>                  
                 <% end %>
+                 <% if !(Current.session.user.id == user.id) %>
+                  <td>
+                    <%= button_to "", conversations_path(receiver_id: user.id), class: "bi bi-chat-left-text border-0 bg-transparent" %>
+                  </td>                  
+                <% end %>
               </tr>
             <% end %>
           </tbody>

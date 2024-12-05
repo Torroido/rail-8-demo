@@ -1,0 +1,5 @@
+<!-- app/views/messages/_message.html.erb -->
+<div class="<%= message.user == @current_user ? 'text-end' : 'text-start' %>">
+  <p><strong><%= message.user.name %></strong></p>
+  <p><%= message.content %></p>
+</div>
