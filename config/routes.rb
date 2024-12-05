@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  ActiveAdmin.routes(self)
   resource :session
   resources :passwords, param: :token
   resources :users
