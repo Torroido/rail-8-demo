@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :passwords, param: :token
   resources :users
 
-  root to: "users#index"
+  root to: "home#index"
   resources :conversations do
     resources :messages, only: [ :index, :create ]
   end

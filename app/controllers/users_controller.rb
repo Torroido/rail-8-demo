@@ -27,6 +27,11 @@ class UsersController < ApplicationController
   end
 
   def update
+    if @user.update(user_params)
+      redirect_to user_path(@user), alert: "Successfully updated"
+    else
+      redirect_to edit_user_path(@user), alert: "Try another email address or password."
+    end
   end
 
   def destroy

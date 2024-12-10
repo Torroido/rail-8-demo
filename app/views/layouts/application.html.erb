@@ -29,15 +29,43 @@
 
   <body>
   <header>
-    <nav id="main-nav" class="navbar navbar-light bg-light navbar-expand border-bottom border-2">
-      <div class="container-fluid">
-        <div class="ms-auto">
-          <% if Current.session %>
-            <%= button_to 'Sign Out', '/session', method: :delete, class: 'btn btn-danger', data: { confirm: 'Are you sure you want to sign out?' } %>
-          <% else %>
-            <%= button_to 'Sign Up!', new_user_path, method: :get, class: 'btn btn-primary' %>
-          <% end %>
-
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="/">VideoChat Hub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <% unless request.url == root_url %>
+              <li class="nav-item">
+                <a class="nav-link" href="/">Download Videos</a>
+              </li>
+            <% end %>
+            <% if @current_user %>
+              <li class="nav-item">
+                <a class="nav-link" href="/users">Chat</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown">
+                  <%= @current_user.name %>
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="/users/<%= @current_user.id %>">My Profile</a></li>
+                  <li><%= button_to 'Sign Out', '/session', method: :delete, 
+                      class: 'dropdown-item text-dark', 
+                      data: { 
+                        confirm: 'Are you sure you want to sign out?',
+                        turbo_confirm: 'Are you sure you want to sign out?' 
+                      } %></li>
+                </ul>
+              </li>
+            <% else %>
+              <li class="nav-item ms-2">
+                <a class="btn btn-primary" href="/signup">Sign Up</a>
+              </li>
+            <% end %>
+          </ul>
         </div>
       </div>
     </nav>
@@ -45,5 +73,10 @@
     <div class="m-5">
       <%= yield %>
     </div>
+    <footer class="bg-dark text-white py-4 fixed-bottom w-100">
+      <div class="container text-center">
+        <p>&copy; <%= Time.now.year %> VideoChat Hub. All rights reserved.</p>
+      </div>
+    </footer>
   </body>
 </html>
