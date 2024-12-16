@@ -1,7 +1,11 @@
 Rails.application.routes.draw do
   resource :session
   resources :passwords, param: :token
-  resources :users
+  resources :users do
+    resources :youtube_videos do
+      get :download
+    end
+  end
 
   root to: "home#index"
   resources :conversations do
