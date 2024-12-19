@@ -39,7 +39,7 @@
           <ul class="navbar-nav ms-auto">
             <% unless request.url == root_url %>
               <li class="nav-item">
-                <a class="nav-link" href="/">Download Videos</a>
+                <a class="nav-link" href="<%= new_user_youtube_video_path(@current_user) %>">Download Videos</a>
               </li>
             <% end %>
             <% if @current_user %>
@@ -62,7 +62,7 @@
               </li>
             <% else %>
               <li class="nav-item ms-2">
-                <a class="btn btn-primary" href="/signup">Sign Up</a>
+                <a class="btn btn-primary" href="/users/new">Sign Up</a>
               </li>
             <% end %>
           </ul>
@@ -70,6 +70,13 @@
       </div>
     </nav>
   </header>
+    <% if flash.any? %>
+      <% flash.each do |key, message| %>
+        <div class="flash <%= key %> text-danger">
+          <%= message %>
+        </div>
+      <% end %>
+    <% end %>
     <div class="m-5">
       <%= yield %>
     </div>
