@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  web:
+    build:
+      context: /home/developer/rails_app/demo_rails_8
+      dockerfile: Dockerfile
+    command: >
+      bash -c "bundle exec rake db:migrate && bundle exec rails server -b 0.0.0.0 -p 3000"
+    environment:
+      RAILS_ENV: development
+    networks:
+      default: null
+    ports:
+      - "3000:3000"
+    volumes:
+      - /home/developer/rails_app/demo_rails_8:/app
+      - /home/developer/rails_app/demo_rails_8/storage:/app/storage
+      - /home/developer/rails_app/demo_rails_8/log:/app/log
+      - /home/developer/rails_app/demo_rails_8/tmp:/app/tmp
+      - /home/developer/rails_app/demo_rails_8/storage/development.sqlite3:/app/storage/development.sqlite3
+networks:
+  default:
+    name: demo_rails_8_default
